@@ -22,18 +22,18 @@ const Cart = ( { cart }) => {
             ))}
 
         </Grid>
-        <div className={classes.cartDetails}>
-            <Typography variant='h4'>
+        <div className={classes.cardDetails}>
+            <Typography variant='h4' className={classes.prix}>
                 Prix Total : { cart.subtotal.formatted_with_symbol}
+            </Typography>
                 <div>
                     <Button className={classes.emptyButton} size="large" type="Button" variant="contained" color='secondary'>
-                        Vider le panier
+                        Annuler
                     </Button>
                     <Button className={classes.checkoutButton} size="large" type="Button" variant="contained" color='primary'>
                         Payer !
                     </Button>
                 </div>
-            </Typography>
         </div>
         </>
     )

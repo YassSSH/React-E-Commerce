@@ -3,6 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import Products from './components/products/Products';
 import Cart from './components/cart/Cart';
 import {commerce} from './lib/commerce'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 const App = () => {
@@ -38,11 +39,16 @@ const App = () => {
 
     
     return (
+    <Router>
         <div>
             <Navbar totalItems={cart.total_items} />
-            {/* <Products products={products} onAddToCart={handleAddToCart} /> */}
-            <Cart cart={cart} />
+            <Routes>
+                <Route  path='/' exact element={<Products products={products} onAddToCart={handleAddToCart} />} />
+                <Route path='/cart' exact element={<Cart cart={cart} />}/>
+
+            </Routes>
         </div>
+    </Router>
     );
 };
 

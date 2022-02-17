@@ -26,4 +26,8 @@ export default makeStyles((theme) => ({
     width: '100%',
     justifyContent: 'space-between',
   },
+
+  prix: {
+    fontFamily:'Oswald',
+  },
 }));

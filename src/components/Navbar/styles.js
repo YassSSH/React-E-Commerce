@@ -16,7 +16,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     textDecoration: 'none',
-    fontFamily:'Oswald'
+    fontFamily:'Oswald',
   },
   image: {
     marginRight: '10px',
