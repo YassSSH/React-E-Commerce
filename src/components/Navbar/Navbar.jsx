@@ -21,7 +21,7 @@ const Navbar = ({ totalItems }) => {
                     </NavLink>
                     <div className={classes.grow}/>
                     <div className={classes.button}>
-                        <NavLink to="/cart">
+                        <NavLink to="/cart" style={{color: "black"}}>
                         <IconButton aria-label='Voir le panier' color='inherit'>
                             <Badge badgeContent={totalItems} color="secondary">
                                 <ShoppingCart></ShoppingCart>
