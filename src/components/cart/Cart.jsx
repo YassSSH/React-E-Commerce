@@ -35,9 +35,11 @@ const Cart = ( { cart, onUpdateCartQty, onRemoveFromCart, handleEmptyCart, }) =>
                     <Button className={classes.emptyButton} size="large" type="Button" variant="contained" color='secondary' onClick={handleEmptyCart} >
                         Annuler
                     </Button>
+                    <NavLink to="/checkout">
                     <Button className={classes.checkoutButton} size="large" type="Button" variant="contained" color='primary'>
                         Payer !
                     </Button>
+                    </NavLink>
                 </div>
         </div>
         </>
@@ -48,7 +50,7 @@ const Cart = ( { cart, onUpdateCartQty, onRemoveFromCart, handleEmptyCart, }) =>
     return (
         <Container>
             <div className={classes.toolbar} />
-            <Typography className={classes.title} variant="h3" gutterBottom> Votre Panier :</Typography>
+            <Typography className={classes.title} variant="h3" gutterBottom> Votre Panier </Typography>
 
             {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
         </Container>

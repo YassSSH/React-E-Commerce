@@ -4,6 +4,8 @@ import Products from './components/products/Products';
 import Cart from './components/cart/Cart';
 import {commerce} from './lib/commerce'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NotFound from './components/NotFound/NotFound';
+import Checkout from './components/CheckoutForm/Checkout/Checkout';
 
 
 const App = () => {
@@ -67,8 +69,9 @@ const App = () => {
                 onUpdateCartQty={handleUpdateCartQty}
                 onRemoveFromCart={handleRemoveFromCart}
                 handleEmptyCart={handleEmptyCart}
-
                 />}/>
+                <Route path='*' element={<NotFound />} />
+                <Route path='/checkout' exact element={<Checkout />} />
 
             </Routes>
         </div>
