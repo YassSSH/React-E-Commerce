@@ -35,7 +35,7 @@ const Cart = ( { cart, onUpdateCartQty, onRemoveFromCart, handleEmptyCart, }) =>
                     <Button className={classes.emptyButton} size="large" type="Button" variant="contained" color='secondary' onClick={handleEmptyCart} >
                         Annuler
                     </Button>
-                    <NavLink to="/checkout">
+                    <NavLink style={{textDecoration: 'none'}} to="/checkout">
                     <Button className={classes.checkoutButton} size="large" type="Button" variant="contained" color='primary'>
                         Payer !
                     </Button>
