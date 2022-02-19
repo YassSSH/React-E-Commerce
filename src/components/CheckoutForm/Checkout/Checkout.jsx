@@ -1,16 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button} from "@material-ui/core"
 import useStyles from "./styles" 
 import AddressForm from '../AddressForm';
 import PayementForm from '../PayementForm';
 import { commerce } from '../../../lib/commerce';
+import { NavLink } from 'react-router-dom';
 
 
 
 const steps = ['Informations Livraison', 'Payement']
 
 
-const Checkout = ( { cart }) => {
+const Checkout = ( { cart, order, onCaptureCheckout, error }) => {
     
     const [activeStep, setActiveStep] = useState(0);
     const [checkoutToken, setcheckoutToken] = useState(null)
@@ -32,22 +34,57 @@ const Checkout = ( { cart }) => {
         console.log(checkoutToken);
     }, [cart])
 
-    const nextStep= () => setActiveStep((previousActiveStep) => previousActiveStep +1)
+
+    useEffect(() => {
+        console.log(shippingData);
+    }, [shippingData])
+
+    const nextStep= () => {
+        setActiveStep((previousActiveStep) => previousActiveStep +1)
+    }
     const backStep= () => setActiveStep((previousActiveStep) => previousActiveStep -1)
 
-    const next = (data) => {
+    const test = (data) => {
         setShippingData(data);
-        nextStep()
+        console.log(data);
+        nextStep();
+      };
+
+
+    let Confirmation = () => order.customer ? (
+        <>
+        <div>
+            <Typography variant='h5'> Merci pour votre commande, {order.customer.prenom} {order.customer.nom} </Typography>
+            <Divider className={classes.divider} />
+            <Typography variant='subtitle2'>Commande n° {order.customer_reference}</Typography>
+        </div>
+        <br />
+        <NavLink to="/" style={{textDecoration : "none"}}>
+        <Button variant='outlined' type='button'>Retour</Button>
+        </NavLink>
+        </>
+    ) : (
+        <div className={classes.spinner}>
+        <CircularProgress />
+      </div>
+
+    );
+
+    if(error) {
+        <>
+        <Typography variant='h5'>
+            Error : {error}
+        </Typography>
+        <br />
+        <NavLink to="/" style={{textDecoration : "none"}}>
+        <Button variant='outlined' type='button'>Retour</Button>
+        </NavLink>
+        </>
     }
 
-
-    const Confirmation = () => (
-        <div > Confirmation...</div>
-    )
-
     const Form = () => activeStep === 0 
-    ? <AddressForm  checkoutToken={checkoutToken} next={next}  /> 
-    : <PayementForm shippingData={shippingData} checkoutToken={checkoutToken} backStep={backStep} />
+    ? <AddressForm  checkoutToken={checkoutToken} test={test}  /> 
+    : <PayementForm shippingData={shippingData} checkoutToken={checkoutToken} backStep={backStep} onCaptureCheckout={onCaptureCheckout} nextStep={nextStep} />
     console.log(checkoutToken);
 
 
