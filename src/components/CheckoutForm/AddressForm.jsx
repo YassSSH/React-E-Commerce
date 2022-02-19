@@ -20,7 +20,7 @@ const AddressForm = ( { checkoutToken, next }) => {
     const options = ShippingOptions.map((sO) => ({id : sO.id, label : `${sO.description} - (${sO.price.formatted_with_symbol})`}))
 
 
-    
+
 
 
     const methods = useForm()
@@ -51,7 +51,7 @@ const AddressForm = ( { checkoutToken, next }) => {
     }
 
     useEffect(() => {
-        console.log(checkoutToken.id);
+        console.log(checkoutToken.id)
         fetchShippingCountries(checkoutToken.id)
     }, [])
 
@@ -70,7 +70,7 @@ const AddressForm = ( { checkoutToken, next }) => {
            Informations de livraison
         </Typography>
         <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit((data) => next({... data, ShippingCountry, ShippingSubdivision, ShippingOption}))}>
+            <form onSubmit={methods.handleSubmit((data) => next({...data, ShippingCountry, ShippingSubdivision, ShippingOption}))}>
 
                 <Grid container spacing={3}>
                     <FormInput name="Prenom" label="Prenom" required />
